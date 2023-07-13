@@ -4,7 +4,7 @@ const { mongoose } = require('./database');
 var app = express();
 //middlewares
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(cors({ origin: '*' }));
 //Cargamos el modulo de direccionamiento de rutas
 app.use('/api/alumno', require('./routes/alumno.route.js'));
 app.use('/api/asistencia', require('./routes/asistencia.route.js'));
