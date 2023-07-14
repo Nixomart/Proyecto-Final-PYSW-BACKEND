@@ -22,9 +22,15 @@ app.use('/api/rol', require('./routes/rol.route.js'));
 app.use('/api/usuario', require('./routes/usuario.route.js'));
 app.use('/api/mercadopago', require('./routes/mercadopago.route.js'))
 app.use('/api/pagos', require('./routes/pago.routes.js'))
+app.use('/api/correo', require('./routes/correo.route.js'))
 //setting
 app.set('port', process.env.PORT || 3000);
 //starting the server
 app.listen(app.get('port'), () => {
     console.log(`Server started on port`, app.get('port'));
 });
+////
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+app.listen(4000);
+console.log('Server on port 3000')
