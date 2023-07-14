@@ -104,6 +104,19 @@ usuarioCtrl.createAlumnoYUsuario = async (req, res) => {
                 })                
                 //Solo obtener entrenador.
             }
+
+             if (user.rol.nombreRol == 'duenio') {
+                //Solo obtener entrenador info.
+                res.json({
+                    status: 1,
+                    msg: "Usuario encontrado DUUENIO",
+                    username: user.nombreUsuario, 
+                    rol: user.rol, 
+                    userid: user._id, 
+                    token: unToken
+                })                
+                //Solo obtener entrenador.
+            }
             
 
 
