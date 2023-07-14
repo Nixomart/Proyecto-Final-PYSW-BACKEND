@@ -3,8 +3,14 @@ const Entrenador = require('../models/entrenador')
 const entrenadorCtrl = {};
 
 entrenadorCtrl.getEntrenadores = async (req, res) => {
-    var entrenador = await Entrenador.find().populate('rol');
-    res.json(entrenador);
+    try {
+        
+        var entrenador = await Entrenador.find();
+        res.json(entrenador);
+    } catch (error) {
+        console.log("ERROR EN GET ENTRENADORES: ", error);
+        res.json({message: 'No se pudo obtener pagos', status: '0', messageError: error})
+    }
 }
 
 entrenadorCtrl.getEntrenadorId = async (req, res) => {
