@@ -15,7 +15,7 @@ usuarioCtrl.getUsuarios = async (req, res) => {
 usuarioCtrl.createAlumnoYUsuario = async (req, res) => {
     const session = await mongoose.startSession();
     session.startTransaction();
-    const { apellido, nombre, email, dni, nroCelular, domicilio } = req.body;
+    const { apellido, nombre, email, dni, nroCelular, domicilio} = req.body;
     try {
       // Crear el usuario
       const usuario = new Usuario(req.body.usuario);
@@ -29,6 +29,7 @@ usuarioCtrl.createAlumnoYUsuario = async (req, res) => {
         email,
         nroCelular,
         domicilio,
+        rol: '64aada555467cf7bcb2d5614',
         usuario: usuarioGuardado._id,
       });
       const alumnoGuardado = await alumno.save();
@@ -195,6 +196,7 @@ usuarioCtrl.loginUsuario = async (req, res) => {
     }
     try {//el método findOne retorna un objeto que cumpla con los criterios de busqueda
         const user = await Usuario.findOne(criteria).populate("rol");
+        console.log("USUARIO QUE QUIERE INGRESAR FIND: ", user);
         if (!user) {
             res.json({
                 status: 0,
@@ -212,6 +214,7 @@ usuarioCtrl.loginUsuario = async (req, res) => {
             })
         }
     } catch (error) {
+        console.log("ERROR LOGIN USUARIO: ", error);
         res.json({
             status: 0,
             msg: 'error'
